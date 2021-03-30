@@ -1,0 +1,15 @@
+D:\Serious Projects\TelegramBot\TelegramBot\bin\Debug\TelegramBot.exe.config
+D:\Serious Projects\TelegramBot\TelegramBot\bin\Debug\TelegramBot.exe
+D:\Serious Projects\TelegramBot\TelegramBot\bin\Debug\TelegramBot.pdb
+D:\Serious Projects\TelegramBot\TelegramBot\obj\Debug\TelegramBot.csprojAssemblyReference.cache
+D:\Serious Projects\TelegramBot\TelegramBot\obj\Debug\TelegramBot.Properties.Resources.resources
+D:\Serious Projects\TelegramBot\TelegramBot\obj\Debug\TelegramBot.csproj.GenerateResource.cache
+D:\Serious Projects\TelegramBot\TelegramBot\obj\Debug\TelegramBot.csproj.CoreCompileInputs.cache
+D:\Serious Projects\TelegramBot\TelegramBot\obj\Debug\TelegramBot.exe
+D:\Serious Projects\TelegramBot\TelegramBot\obj\Debug\TelegramBot.pdb
+D:\Serious Projects\TelegramBot\TelegramBot\obj\Debug\TelegramBot.MainMenuForm.resources
+D:\Serious Projects\TelegramBot\TelegramBot\bin\Debug\Newtonsoft.Json.dll
+D:\Serious Projects\TelegramBot\TelegramBot\bin\Debug\Telegram.Bot.dll
+D:\Serious Projects\TelegramBot\TelegramBot\bin\Debug\Newtonsoft.Json.xml
+D:\Serious Projects\TelegramBot\TelegramBot\bin\Debug\Telegram.Bot.xml
+D:\Serious Projects\TelegramBot\TelegramBot\obj\Debug\TelegramBot.csproj.CopyComplete
