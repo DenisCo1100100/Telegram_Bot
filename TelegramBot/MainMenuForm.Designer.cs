@@ -31,7 +31,7 @@ namespace TelegramBot
         {
             this.usersTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
+            this.chatRichTextBox = new System.Windows.Forms.RichTextBox();
             this.controllersGroupBox = new System.Windows.Forms.GroupBox();
             this.startButton = new System.Windows.Forms.Button();
             this.tokenLabel = new System.Windows.Forms.Label();
@@ -62,7 +62,7 @@ namespace TelegramBot
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.chatRichTextBox);
             this.tabPage1.Location = new System.Drawing.Point(204, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -72,15 +72,14 @@ namespace TelegramBot
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // chatRichTextBox
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.label1.Location = new System.Drawing.Point(6, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(181, 46);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Message";
+            this.chatRichTextBox.Location = new System.Drawing.Point(0, 0);
+            this.chatRichTextBox.Name = "chatRichTextBox";
+            this.chatRichTextBox.ReadOnly = true;
+            this.chatRichTextBox.Size = new System.Drawing.Size(648, 402);
+            this.chatRichTextBox.TabIndex = 1;
+            this.chatRichTextBox.Text = "";
             // 
             // controllersGroupBox
             // 
@@ -124,6 +123,7 @@ namespace TelegramBot
             this.tokenTextBox.Name = "tokenTextBox";
             this.tokenTextBox.Size = new System.Drawing.Size(354, 29);
             this.tokenTextBox.TabIndex = 2;
+            this.tokenTextBox.Text = "1720851055:AAFvm9HFnPJB5hc_d4Z6Z0Q4i4-aRJTetko";
             // 
             // button1
             // 
@@ -147,7 +147,6 @@ namespace TelegramBot
             this.Text = "Управление ботом";
             this.usersTabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.controllersGroupBox.ResumeLayout(false);
             this.controllersGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -158,12 +157,12 @@ namespace TelegramBot
 
         public System.Windows.Forms.TabControl usersTabControl;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox controllersGroupBox;
         private System.Windows.Forms.Label tokenLabel;
         private System.Windows.Forms.TextBox tokenTextBox;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox chatRichTextBox;
     }
 }
 

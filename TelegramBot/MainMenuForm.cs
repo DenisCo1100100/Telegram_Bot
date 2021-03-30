@@ -11,18 +11,12 @@ namespace TelegramBot
     {
         private readonly Bot _bot = new Bot();
         public static MainMenuForm Controller { get; set; }
-        public static List<long> UsersIdList { get; set; } = new List<long>();
 
         public MainMenuForm()
         {
             InitializeComponent();
 
             Controller = this;
-
-            foreach (TabPage page in usersTabControl.TabPages)
-            {
-                UsersIdList.Add(long.Parse(page.Tag.ToString()));
-            }
         }
 
         private void usersTabControl_DrawItem(object sender, DrawItemEventArgs e)
@@ -30,16 +24,12 @@ namespace TelegramBot
             Graphics g = e.Graphics;
             Brush _textBrush;
 
-            // Get the item from the collection.
             TabPage _tabPage = usersTabControl.TabPages[e.Index];
 
-            // Get the real bounds for the tab rectangle.
             Rectangle _tabBounds = usersTabControl.GetTabRect(e.Index);
 
             if (e.State == DrawItemState.Selected)
             {
-
-                // Draw a different background color, and don't paint a focus rectangle.
                 _textBrush = new SolidBrush(Color.Red);
                 g.FillRectangle(Brushes.Gray, e.Bounds);
             }
@@ -49,13 +39,14 @@ namespace TelegramBot
                 e.DrawBackground();
             }
 
-            // Use our own font.
             Font _tabFont = new Font("Arial", (float)10.0, FontStyle.Bold, GraphicsUnit.Pixel);
 
-            // Draw string. Center the text.
-            StringFormat _stringFlags = new StringFormat();
-            _stringFlags.Alignment = StringAlignment.Center;
-            _stringFlags.LineAlignment = StringAlignment.Center;
+            StringFormat _stringFlags = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+
             g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
         }
 
@@ -76,19 +67,26 @@ namespace TelegramBot
         {
             string userName = e.Message.Chat.Username;
 
-            Label chatLabel = new Label();
-            chatLabel.Text = $"\n{userName}: {e.Message.Text}";
-            chatLabel.Name = "chatLabel";
+            RichTextBox chatRichTextBox = new RichTextBox
+            {
+                Text = $"\n{userName}: {e.Message.Text}",
+                Name = "chatRichTextBox",
+                ReadOnly = true
+            };
 
-            usersTabControl.TabPages.Add(new TabPage(userName));
-            usersTabControl.TabPages[usersTabControl.TabPages.Count - 1].Controls.Add(chatLabel);
+            var tabPage = new TabPage(userName);
+            tabPage.Name = userName;
+            tabPage.Controls.Add(chatRichTextBox);
+            usersTabControl.TabPages.Add(tabPage);
         }
 
-        public void AddMessage(MessageEventArgs e)
+        public void AddMessageInChat(MessageEventArgs e)
         {
             string userName = e.Message.Chat.Username;
 
-            usersTabControl.TabPages[userName].Controls.Find("chatLabel", true)[0].Text += $"\n{userName}: {e.Message.Text}";
+            var tabPage = usersTabControl.TabPages[userName];
+            var richTextBox = (RichTextBox)tabPage.Controls[0];
+            richTextBox.Text += $"\n{userName}: {e.Message.Text}";
         }
     }
 }
