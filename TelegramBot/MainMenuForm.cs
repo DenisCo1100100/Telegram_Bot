@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Telegram.Bot.Args;
@@ -71,10 +70,11 @@ namespace TelegramBot
             {
                 Text = $"\n{userName}: {e.Message.Text}",
                 Name = "chatRichTextBox",
-                ReadOnly = true
+                ReadOnly = true,
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right
             };
 
-            var tabPage = new TabPage(userName);
+            var tabPage = new TabPage(e.Message.Chat.FirstName);
             tabPage.Name = userName;
             tabPage.Controls.Add(chatRichTextBox);
             usersTabControl.TabPages.Add(tabPage);
@@ -83,9 +83,9 @@ namespace TelegramBot
         public void AddMessageInChat(MessageEventArgs e)
         {
             string userName = e.Message.Chat.Username;
-
             var tabPage = usersTabControl.TabPages[userName];
             var richTextBox = (RichTextBox)tabPage.Controls[0];
+
             richTextBox.Text += $"\n{userName}: {e.Message.Text}";
         }
     }

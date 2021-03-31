@@ -62,6 +62,7 @@
     <Compile Include="Model\Commands\BaseCommand.cs" />
     <Compile Include="Model\Commands\HelloCommand.cs" />
     <Compile Include="Model\Commands\InformationCommand.cs" />
+    <Compile Include="Model\Commands\OtherCommand.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainMenuForm.resx">

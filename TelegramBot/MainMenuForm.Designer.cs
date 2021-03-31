@@ -36,7 +36,6 @@ namespace TelegramBot
             this.startButton = new System.Windows.Forms.Button();
             this.tokenLabel = new System.Windows.Forms.Label();
             this.tokenTextBox = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.usersTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.controllersGroupBox.SuspendLayout();
@@ -125,22 +124,11 @@ namespace TelegramBot
             this.tokenTextBox.TabIndex = 2;
             this.tokenTextBox.Text = "1720851055:AAFvm9HFnPJB5hc_d4Z6Z0Q4i4-aRJTetko";
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(12, 435);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(880, 566);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.controllersGroupBox);
             this.Controls.Add(this.usersTabControl);
             this.Name = "MainMenuForm";
@@ -161,8 +149,6 @@ namespace TelegramBot
         private System.Windows.Forms.Label tokenLabel;
         private System.Windows.Forms.TextBox tokenTextBox;
         private System.Windows.Forms.Button startButton;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox chatRichTextBox;
     }
 }
-
