@@ -10,7 +10,7 @@ namespace TelegramBot.Model.Commands
         {
             await Bot.BotClient.SendTextMessageAsync(
                   chatId: e.Message.Chat,
-                  text: $"{e.Message.Chat.Username}, Привет:)"
+                  text: $"{e.Message.Chat.FirstName}, Привет:)"
                 );
         }
     }

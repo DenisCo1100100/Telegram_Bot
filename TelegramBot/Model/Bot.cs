@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using Telegram.Bot;
 using Telegram.Bot.Args;
@@ -20,7 +19,8 @@ namespace TelegramBot.Model
             {
                 new HelloCommand(),
                 new InformationCommand(),
-                new OtherCommand()
+                new OtherCommand(),
+                new GetScheduleCommand()
             };
         }
 
@@ -37,23 +37,18 @@ namespace TelegramBot.Model
             Initialization(e);
 
             string message = e.Message.Text;
-            bool isFound = false;
-            foreach (var command in _commandsList)
+
+            bool p(BaseCommand command) { return command.Name == message; }
+            BaseCommand findCommand = _commandsList.Find(p);
+            if (findCommand != null)
             {
-                if (command.Name == message)
-                {
-                    isFound = true;
-                    command.Execute(e);
-
-                    break;
-                }
+                findCommand.Execute(e);
             }
-
-            if (!isFound) 
+            else
             {
                 bool predicate(BaseCommand other) { return other.Name == "other"; }
-                BaseCommand findCommand = _commandsList.Find(predicate);
-                findCommand.Execute(e); 
+                findCommand = _commandsList.Find(predicate);
+                findCommand.Execute(e);
             }
         }
 
