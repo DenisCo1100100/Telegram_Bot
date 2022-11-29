@@ -30,15 +30,10 @@ namespace TelegramBot
         private void InitializeComponent()
         {
             this.usersTabControl = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
             this.controllersGroupBox = new System.Windows.Forms.GroupBox();
             this.startButton = new System.Windows.Forms.Button();
             this.tokenLabel = new System.Windows.Forms.Label();
             this.tokenTextBox = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.usersTabControl.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.controllersGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +43,6 @@ namespace TelegramBot
             this.usersTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.usersTabControl.Controls.Add(this.tabPage1);
             this.usersTabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.usersTabControl.ItemSize = new System.Drawing.Size(10, 200);
             this.usersTabControl.Location = new System.Drawing.Point(12, 23);
@@ -59,28 +53,6 @@ namespace TelegramBot
             this.usersTabControl.TabIndex = 0;
             this.usersTabControl.Tag = "";
             this.usersTabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.usersTabControl_DrawItem);
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Location = new System.Drawing.Point(204, 4);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(648, 398);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Tag = "423423";
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.label1.Location = new System.Drawing.Point(6, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(181, 46);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Message";
             // 
             // controllersGroupBox
             // 
@@ -124,30 +96,18 @@ namespace TelegramBot
             this.tokenTextBox.Name = "tokenTextBox";
             this.tokenTextBox.Size = new System.Drawing.Size(354, 29);
             this.tokenTextBox.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(12, 435);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.tokenTextBox.Text = "1720851055:AAFvm9HFnPJB5hc_d4Z6Z0Q4i4-aRJTetko";
             // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(880, 566);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.controllersGroupBox);
             this.Controls.Add(this.usersTabControl);
             this.Name = "MainMenuForm";
             this.Text = "Управление ботом";
-            this.usersTabControl.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainMenuForm_FormClosing);
             this.controllersGroupBox.ResumeLayout(false);
             this.controllersGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -157,13 +117,9 @@ namespace TelegramBot
         #endregion
 
         public System.Windows.Forms.TabControl usersTabControl;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox controllersGroupBox;
         private System.Windows.Forms.Label tokenLabel;
         private System.Windows.Forms.TextBox tokenTextBox;
         private System.Windows.Forms.Button startButton;
-        private System.Windows.Forms.Button button1;
     }
 }
-

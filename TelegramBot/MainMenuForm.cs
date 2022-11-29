@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Awesomium.Core;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Telegram.Bot.Args;
@@ -11,52 +11,52 @@ namespace TelegramBot
     {
         private readonly Bot _bot = new Bot();
         public static MainMenuForm Controller { get; set; }
-        public static List<long> UsersIdList { get; set; } = new List<long>();
+        public static Image ScreanSchot { get; private set; }
+
+        private readonly WebView _webView = WebCore.CreateWebView(900, 1400);
 
         public MainMenuForm()
         {
             InitializeComponent();
 
             Controller = this;
-
-            foreach (TabPage page in usersTabControl.TabPages)
-            {
-                UsersIdList.Add(long.Parse(page.Tag.ToString()));
-            }
         }
 
-        private void usersTabControl_DrawItem(object sender, DrawItemEventArgs e)
+        public void AddUser(MessageEventArgs e)
         {
-            Graphics g = e.Graphics;
-            Brush _textBrush;
+            string firstName = e.Message.Chat.FirstName;
 
-            // Get the item from the collection.
-            TabPage _tabPage = usersTabControl.TabPages[e.Index];
-
-            // Get the real bounds for the tab rectangle.
-            Rectangle _tabBounds = usersTabControl.GetTabRect(e.Index);
-
-            if (e.State == DrawItemState.Selected)
+            RichTextBox chatRichTextBox = new RichTextBox
             {
+                Text = $"\n{firstName}: {e.Message.Text}",
+                Name = "chatRichTextBox",
+                ReadOnly = true,
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right
+            };
 
-                // Draw a different background color, and don't paint a focus rectangle.
-                _textBrush = new SolidBrush(Color.Red);
-                g.FillRectangle(Brushes.Gray, e.Bounds);
-            }
-            else
+            var tabPage = new TabPage(firstName);
+            tabPage.Name = e.Message.Chat.Id.ToString();
+            tabPage.Controls.Add(chatRichTextBox);
+            usersTabControl.TabPages.Add(tabPage);
+        }
+
+        public void AddMessageInChat(MessageEventArgs e)
+        {
+            var tabPage = usersTabControl.TabPages[e.Message.Chat.Id.ToString()];
+            var richTextBox = (RichTextBox)tabPage.Controls[0];
+
+            richTextBox.Text += $"\n{e.Message.Chat.FirstName}: {e.Message.Text}";
+        }
+
+        public void GetScreanShot(string date)
+        {
+            _webView.Source = new Uri("http://pinskgptklp.brest.by/schedule/?type=replace&time=1617350605");
+
+            _webView.LoadingFrameComplete += (s, es) =>
             {
-                _textBrush = new SolidBrush(e.ForeColor);
-                e.DrawBackground();
-            }
-
-            // Use our own font.
-            Font _tabFont = new Font("Arial", (float)10.0, FontStyle.Bold, GraphicsUnit.Pixel);
-
-            // Draw string. Center the text.
-            StringFormat _stringFlags = new StringFormat();
-            _stringFlags.Alignment = StringAlignment.Center;
-            _stringFlags.LineAlignment = StringAlignment.Center;
-            g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
+                BitmapSurface surface = (BitmapSurface)_webView.Surface;
+                surface.SaveToJPEG("Result.jpeg");
+            };
         }
 
         private void startButton_Click(object sender, EventArgs e)
@@ -72,23 +72,40 @@ namespace TelegramBot
             }
         }
 
-        public void AddUser(MessageEventArgs e)
+        private void usersTabControl_DrawItem(object sender, DrawItemEventArgs e)
         {
-            string userName = e.Message.Chat.Username;
+            Graphics g = e.Graphics;
+            Brush _textBrush;
 
-            Label chatLabel = new Label();
-            chatLabel.Text = $"\n{userName}: {e.Message.Text}";
-            chatLabel.Name = "chatLabel";
+            TabPage _tabPage = usersTabControl.TabPages[e.Index];
 
-            usersTabControl.TabPages.Add(new TabPage(userName));
-            usersTabControl.TabPages[usersTabControl.TabPages.Count - 1].Controls.Add(chatLabel);
+            Rectangle _tabBounds = usersTabControl.GetTabRect(e.Index);
+
+            if (e.State == DrawItemState.Selected)
+            {
+                _textBrush = new SolidBrush(Color.Red);
+                g.FillRectangle(Brushes.Gray, e.Bounds);
+            }
+            else
+            {
+                _textBrush = new SolidBrush(e.ForeColor);
+                e.DrawBackground();
+            }
+
+            Font _tabFont = new Font("Arial", (float)10.0, FontStyle.Bold, GraphicsUnit.Pixel);
+
+            StringFormat _stringFlags = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+
+            g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
         }
 
-        public void AddMessage(MessageEventArgs e)
+        private void MainMenuForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string userName = e.Message.Chat.Username;
-
-            usersTabControl.TabPages[userName].Controls.Find("chatLabel", true)[0].Text += $"\n{userName}: {e.Message.Text}";
+            WebCore.Shutdown();
         }
     }
 }

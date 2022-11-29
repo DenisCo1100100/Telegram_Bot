@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telegram.Bot.Args;
+﻿using Telegram.Bot.Args;
 
 namespace TelegramBot.Model.Commands
 {
@@ -15,7 +10,7 @@ namespace TelegramBot.Model.Commands
         {
             await Bot.BotClient.SendTextMessageAsync(
                   chatId: e.Message.Chat,
-                  text: $"{e.Message.Chat.Username}, Привет:)"
+                  text: $"{e.Message.Chat.FirstName}, Привет:)"
                 );
         }
     }
